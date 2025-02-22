@@ -20,7 +20,7 @@ output "subnet_ids" {
 
 output "subnets_public_self_link" {
   description = "Public Subnets Self Link"
-  value       = google_compute_subnetwork.subnets.*.self_link
+  value       = { for subnet in google_compute_subnetwork.subnets : subnet.name => subnet.self_link }
 }
 
 output "nat_ip" {
