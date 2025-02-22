@@ -8,9 +8,19 @@ output "vpc_name" {
   value       = google_compute_network.vpc.name
 }
 
+output "vpc_self_link" {
+  description = "VPC Self Link"
+  value       = google_compute_network.vpc.self_link
+}
+
 output "subnet_ids" {
   description = "The IDs of the created subnets"
   value       = { for subnet in google_compute_subnetwork.subnets : subnet.name => subnet.id }
+}
+
+output "subnets_public_self_link" {
+  description = "Public Subnets Self Link"
+  value       = google_compute_subnetwork.subnets.*.self_link
 }
 
 output "nat_ip" {
